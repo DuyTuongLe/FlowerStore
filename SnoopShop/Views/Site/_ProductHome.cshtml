@@ -1,0 +1,29 @@
+﻿@model IEnumerable<SnoopShop.Models.mProduct>
+@foreach (var row in Model)
+{
+    <div class="t-item" style="border: 1px solid #eee !important; margin: 10px 5px !important;">
+        <a href="~/@row.Slug">
+            <div class="t-img">
+                <img src="~/Public/images/products/@row.Image" alt="" class="beau" style="width: 95% !important;">
+                @if (row.Installment == 1)
+                {@*<div class="anw">Trả góp <span class="font-weight-bold">0%</span></div>*@                }
+            </div>
+            <div class="t-np text-center" style="font-weight: bold; font-size:16px;">
+                @row.Name
+            </div>
+            <div class="t-price text-center">
+                <div class="price" style="padding: 0 !important;">
+                    @String.Format("{0:0,0₫}", row.ProPrice)
+                </div>
+                <div style="display:flex; justify-content:center;">
+                    <div class="old-price float-left" style="padding: 0 !important;">
+                        @String.Format("{0:0,0₫}", row.ProPrice)
+                    </div>
+                    <div class="khongbietdattenlagi float-left">(-@String.Format("{0:0}", ((row.Price - row.ProPrice) / row.Price * 100))%)</div>
+                </div>
+                
+            </div>
+        </a>
+    </div>
+}
+
